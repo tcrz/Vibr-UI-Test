@@ -7,7 +7,7 @@ type LayoutProps = {
 
 const Layout: FC<LayoutProps> = ({ children }) => {
   return (
-    <section className="h-[100vh] bg-[#F3F4F6]">
+    <section className="h-[100vh] bg-[#F3F4F6] overflow-hidden">
       <Navbar />
       {children}
     </section>
