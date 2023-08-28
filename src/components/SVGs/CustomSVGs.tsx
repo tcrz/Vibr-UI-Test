@@ -6,6 +6,24 @@ type SVGProps = {
   // classes?: string
 }
 
+export const ArrowRight = () => {
+  return (
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="10" viewBox="0 0 12 10" fill="none">
+        <path d="M11.1666 5.18288L1.16663 5.18288" stroke="#004741" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M7.13342 9.19914L11.1668 5.18314L7.13342 1.16647" stroke="#004741" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+  )
+}
+
+export const ArrowLeft = () => {
+  return (
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="10" viewBox="0 0 12 10" fill="none">
+        <path d="M0.833374 5.18288L10.8334 5.18288" stroke="#004741" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M4.86658 9.19914L0.833243 5.18314L4.86658 1.16647" stroke="#004741" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+  )
+}
+
 export const DocumentSVG = () => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" viewBox="0 0 16 18" fill="none">
