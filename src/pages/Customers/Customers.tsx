@@ -2,10 +2,35 @@ import { SyntheticEvent, useState } from "react";
 import Heading from "../../components/Heading";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import { styled } from '@mui/material';
+import { PaginationItem, styled } from '@mui/material';
 import { Button, InputAdornment, OutlinedInput, Pagination } from '@mui/material';
-import { DocumentSVG, SearchSVG } from "../../components/SVGs/CustomSVGs";
+import { ArrowLeft, ArrowRight, DocumentSVG, SearchSVG } from "../../components/SVGs/CustomSVGs";
 import "../../components/Table/Table.css"
+
+const paginationStyles = {
+  '& li button': {
+      background: "white",
+      color: "#004741",
+      fontWeight: "500",
+      lineHeight: "30px",
+  },
+  '& li button:hover': {
+      backgroundColor: "#004741",
+      border: "1px solid",
+      color: "white"
+  },
+  '& .MuiPaginationItem-previousNext, & .MuiPaginationItem-previousNext:hover': {
+    background: "transparent",
+    color: "#004741"
+  },
+  '& li button.Mui-selected, & li button.Mui-selected:hover': {
+      backgroundColor: `#004741`,
+      color:'white',
+  },
+
+    
+}
+
 
 const AntTabs = styled(Tabs)({
   // borderBottom: '1px solid #e8e8e8',
@@ -50,7 +75,7 @@ const Customers = () => {
   };
 
   return (
-    <section className="h-[88vh] px-20 py-2 border borderr-red-400 overflow-y-scroll">
+    <section className="h-[88vh] px-20 border border-red-400 overflow-y-scroll">
       <Heading
         heading="Customers"
         subText="See all your customers in one place"
@@ -65,7 +90,7 @@ const Customers = () => {
           <AntTab label="Campaigns" />
         </AntTabs>
       </div>
-      <section className="borderr border-red-500 h-[65vh]">
+      <section className="borderr border-red-500 h-[60vh]">
         <div className="my-4 searchbar flex items-center justify-between flex-wrap borrder-2">
           <div className="search flex basis-[50%] gap-2 borderr-2 border-red-700">
             <OutlinedInput className="input-field !rounded-[6px] h-[45px] basis-[80%]" type="text" placeholder="Search customer log by customer name, email address & phone number"
@@ -108,9 +133,17 @@ const Customers = () => {
             </table>
           </div>
           <div className="h-[10vh]">
-            <Pagination className="absolute right-0"
-                count={10}
-                defaultPage={6}
+            <Pagination 
+              className="absolute right-0"
+              sx={paginationStyles}
+              count={10}
+              defaultPage={6}
+              renderItem={(item) => (
+                <PaginationItem
+                  slots={{ previous: ArrowLeft, next: ArrowRight }}
+                  {...item}
+                />
+              )}
             />
           </div>
         </div>
