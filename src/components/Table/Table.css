@@ -1,0 +1,80 @@
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  /* table-layout: fixed; */
+  position: relative;
+  background: white;
+  /* height: 80%; */
+  /* border: 1px solid black */
+}
+
+table tr:nth-child(odd) {
+  background-color: #f6f3f35b;
+}
+
+table caption {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: white;
+  width: 100%
+}
+
+table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  height: 100%;
+  /* @apply bg-blue-100; */
+  background-color: #F3F3F4;
+  color: #00100B
+  /* @apply text-gray-500 */
+  /* font-size: .6em */;
+}
+
+table.with-caption thead th {
+  top: 1.8em;
+}
+
+table th {
+  /* position: sticky;
+  top: -1px; */
+  /* @apply border-b border-t border-r border-blue-500; */
+  /* @apply border-b border-blue-500 */
+  /* border-top: 2px solid #EFEFEF;
+  border-bottom: 2px solid #EFEFEF;
+  border-right: 2px solid #EFEFEF; */
+}
+
+table td,
+table th {
+  font-size: 0.8em;
+  text-align: center;
+  padding: 12px;
+}
+
+table td {
+  /* border: 1px solid #EFEFEF; */
+  border-bottom: 1px solid #efefef;
+  /* @apply border-b border-blue-500; */
+}
+
+table td {
+  /* padding: 0.7em 0.7em; */
+}
+
+table td p {
+  margin: 0;
+  /* width: 90%; */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+tbody tr:hover {
+  cursor: pointer;
+  background: #f3f1f18d;
+  /* box-shadow: 2px 2px 1px hsla(0, 0%, 44%, 0.1); */
+  /* @apply text-primary; */
+}
