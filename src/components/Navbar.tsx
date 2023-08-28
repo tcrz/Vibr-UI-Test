@@ -1,5 +1,4 @@
 import logo from "../assets/logo.svg";
-import home from "../assets/home.svg";
 import MenuItem from "./MenuItem";
 import UserMenu from "./UserMenu";
 import { BookingsSVG, CustomersSVG, HomeSVG, ServicesSVG } from "./SVGs/CustomSVGs";
@@ -31,7 +30,7 @@ const items: MenuItemData[] = [
 
 const Navbar = () => {
   return (
-    <nav className="navbar h-[12vh] bg-white flex items-center px-20 border-b border-[rgba(204, 207, 206, 0.24)]">
+    <nav className="navbar h-[11.5vh] bg-white flex items-center px-20 border-b border-[rgba(204, 207, 206, 0.24)]">
       <div className="bgg-yellow-300 w-full h-full flex items-center justify-between">
         <img src={logo} width="150" height="150" alt="buuk-me-now logo" />
         <div className="nav-menu borderr border-green-300 flex items-center gap-8 text-[#808885]">
