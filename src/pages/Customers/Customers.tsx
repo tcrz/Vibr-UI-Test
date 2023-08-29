@@ -1,92 +1,57 @@
-import { SyntheticEvent, useState } from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
 import Heading from "../../components/Heading";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import { PaginationItem, styled } from '@mui/material';
+import { PaginationItem } from '@mui/material';
 import { Button, InputAdornment, OutlinedInput, Pagination } from '@mui/material';
 import { ArrowLeft, ArrowRight, DocumentSVG, SearchSVG } from "../../components/SVGs/CustomSVGs";
 import CampaignsTable from "./CampaignsTable";
 import CampaignCreation from "./CampaignCreation";
+import { AntTab, AntTabs, paginationStyles } from "./Styles";
+import { data } from "./data";
 
-const paginationStyles = {
-  '& li button': {
-      background: "white",
-      color: "#004741",
-      fontWeight: "500",
-      lineHeight: "30px",
-  },
-  '& li button:hover': {
-      backgroundColor: "#004741",
-      border: "1px solid",
-      color: "white"
-  },
-  '& .MuiPaginationItem-previousNext, & .MuiPaginationItem-firstLast, & .MuiPaginationItem-previousNext:hover': {
-    background: "transparent",
-    color: "#004741"
-  },
-  '& li button.Mui-selected, & li button.Mui-selected:hover': {
-      backgroundColor: `#004741`,
-      color:'white',
-  },    
-}
-
-const AntTabs = styled(Tabs)({
-  // borderBottom: '1px solid #e8e8e8',
-  '& .MuiTabs-indicator': {
-    backgroundColor: '#00100B',
-  },
-  '& .MuiTab-root': {
-    alignItems: "start",
-  }
-});
-
-const AntTab = styled((props: { label:string }) => <Tab disableRipple {...props} />)(({ theme }) => ({
-  textTransform: 'none',
-  minWidth: 0,
-  [theme.breakpoints.up('sm')]: {
-    minWidth: 0,
-  },
-  fontSize: "1.05em",
-  fontWeight: theme.typography.fontWeightRegular,
-  marginRight: theme.spacing(1),
-  // border: "1px solid red",
-  // padding: "3px",
-  color: '#808885',
-  '&:hover': {
-    color: '#00100B',
-    opacity: 1,
-  },
-  '&.Mui-selected': {
-    color: '#00100B',
-    fontWeight: 500,
-  },
-  '&.Mui-focusVisible': {
-    backgroundColor: '#d1eaff',
-  },
-}));
 
 export type Target = "All customers" | "Some customers" | "Owners"
 export type CampaignData = {
   title: string,
   description: string,
-  target: Target
+  target: Target,
+  status: "Active"
 }
 
 const Customers = () => {
   const [value, setValue] = useState(0);
   const [open, setOpen] = useState(false)
-  const [campaigns, setCampaigns] = useState<CampaignData[]>([])
+  const pageSize = 5
+  const [campaigns, setCampaigns] = useState<CampaignData[]>(data)
+  const [paginatedCampaignsData, setPaginatedCampaignsData] = useState<CampaignData[]>(campaigns.slice(0, pageSize))
+  const [page, setPage] = useState(1)
 
   const handleChange = (event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
-  const createCampaign = (data: CampaignData) => {
-    setCampaigns(prev => [data, ...prev])
+  const handlePageOnChange = (event: React.ChangeEvent<unknown>, page: number) => {
+    setPage(page)
+    const start = (page - 1) * pageSize
+    const end = start + pageSize
+    setPaginatedCampaignsData(campaigns.slice(start, end))
   }
 
+  const createCampaign = (data: CampaignData) => {
+    const allCampaigns = [data, ...campaigns]
+    setCampaigns(allCampaigns)
+    setPaginatedCampaignsData(allCampaigns.slice(0, pageSize))
+  }
+
+  // Calculate total number of pages
+  let pageCount;
+  if (campaigns.length % pageSize === 0)
+    pageCount =  campaigns.length / pageSize
+  else {
+    pageCount = Math.floor(campaigns.length / pageSize) + 1
+  } 
+
   return (
-    <section className="h-[88vh] px-20 borderr border-red-400 overflow-y-scroll">
+    <section className="h-[88vh] px-20 border border-red-400 overflow-y-scroll">
       <Heading
         heading="Customers"
         subText="See all your customers in one place"
@@ -119,21 +84,26 @@ const Customers = () => {
         </div>
         <div className="relative h-[55vh] flex flex-col gap-4">
           <div className="h-[45vh] overflow-y-scroll">
-            <CampaignsTable data={campaigns}/>
+            <CampaignsTable data={paginatedCampaignsData}/>
           </div>
           <div className="h-[10vh]">
-            <Pagination 
-              className="absolute right-0"
-              sx={paginationStyles}
-              count={10}
-              defaultPage={6}
-              renderItem={(item) => (
-                <PaginationItem
-                  slots={{ previous: ArrowLeft, next: ArrowRight }}
-                  {...item}
-                />
-              )}
-            />
+            {
+              campaigns.length > 0 && 
+              <Pagination 
+                className="absolute right-0"
+                sx={paginationStyles}
+                onChange={handlePageOnChange}
+                count={pageCount}
+                page={page}
+                defaultPage={1}
+                renderItem={(item) => (
+                  <PaginationItem
+                    slots={{ previous: ArrowLeft, next: ArrowRight }}
+                    {...item}
+                  />
+                )}
+              />
+            }
           </div>
         </div>
       </section>
