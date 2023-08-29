@@ -60,7 +60,7 @@ const Navbar = () => {
         <img src={logo} width="150" height="150" alt="buuk-me-now logo" className="lg:pointer-events-none" onClick={toggleDrawer("left", true)}/>
         <div className="nav-menu borderr border-green-300 hidden items-center gap-6 text-[#808885] lg:flex">
           {items.map((item) => (
-            <MenuItem icon={item.icon} name={item.name} />
+            <MenuItem icon={item.icon} name={item.name} isActive={item.name === 'Customers'} />
           ))}
         </div>
         <div className="hidden sm:block">
