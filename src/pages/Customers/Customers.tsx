@@ -59,7 +59,7 @@ const Customers = () => {
         heading="Customers"
         subText="See all your customers in one place"
       />
-      <div className="mt-1 w-full border-b border-[#c2c3c3] sm:mt-2">
+      <div className="mt-2 w-full border-b border-[#c2c3c3]">
         <AntTabs
           variant="scrollable"
           centered
@@ -72,7 +72,7 @@ const Customers = () => {
         </AntTabs>
       </div>
       <section className="borderr border-red-500 h-[61.5vh] sm:h-[60vh]">
-        <div className="borderr-2 my-1 searchbar flex flex-col-reverse items-center gap-2 justify-between flex-wrap borrder-2 sm:flex-row sm:my-4">
+        <div className="borderr-2 my-2 searchbar flex flex-col-reverse items-center gap-2 justify-between flex-wrap borrder-2 sm:flex-row sm:my-4">
           <div className="search flex gap-2 borderr-2 border-red-700 w-full sm:basis-[50%]">
             <OutlinedInput className="input-field !rounded-[6px] h-[38px] w-full md:basis-[80%] sm:h-[45px]" type="text" placeholder="Search customer log by customer name, email address & phone number"
               startAdornment={<InputAdornment position="start"><SearchSVG /></InputAdornment>}              
