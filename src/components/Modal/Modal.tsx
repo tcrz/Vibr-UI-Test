@@ -15,7 +15,7 @@ const Modal:FC<ModalProps> = ({open, setOpen, title, icon, children}) => {
       onClick={() => open ? setOpen(false) : () => {}}
       style={{ display: open ? "flex" : "none" }}
       >
-      <div className="modal rounded-md p-[20px] w-5/6 h-[90%] sm:w-2/5" onClick={(e) => e.stopPropagation()}>
+      <div className="modal rounded-md p-[20px] w-5/6 h-[90%] sm:w-3/5" onClick={(e) => e.stopPropagation()}>
         <h5 className="flex items-center text-black text-[20px] font-semibold gap-2"><span>{icon}</span>{title}</h5>
         {children}
       </div>
