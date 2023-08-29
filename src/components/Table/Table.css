@@ -2,7 +2,7 @@ table {
   border-collapse: separate;
   border-spacing: 0;
   width: 100%;
-  table-layout: fixed;
+  /* table-layout: fixed; */
   position: relative;
   background: white;
   /* height: 80%; */
