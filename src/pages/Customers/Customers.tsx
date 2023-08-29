@@ -17,7 +17,7 @@ export type CampaignData = {
 }
 
 const Customers = () => {
-  const [value, setValue] = useState(0);
+  const [tab, setTab] = useState(1);
   const [open, setOpen] = useState(false)
   const pageSize = 5
   const [campaigns, setCampaigns] = useState<CampaignData[]>([])
@@ -26,7 +26,7 @@ const Customers = () => {
 
   // @ts-ignore
   const handleChange = (event: SyntheticEvent, newValue: number) => {
-    setValue(newValue);
+    setTab(newValue);
   };
 
   // For handling possible pagination
@@ -63,11 +63,11 @@ const Customers = () => {
         <AntTabs
           variant="scrollable"
           centered
-          value={value}
+          value={tab}
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <AntTab label="Customer Log"/>
+          <AntTab disabled label="Customer Log"/>
           <AntTab label="Campaigns" />
         </AntTabs>
       </div>
