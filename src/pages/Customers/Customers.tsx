@@ -5,7 +5,6 @@ import Tab from "@mui/material/Tab";
 import { PaginationItem, styled } from '@mui/material';
 import { Button, InputAdornment, OutlinedInput, Pagination } from '@mui/material';
 import { ArrowLeft, ArrowRight, DocumentSVG, SearchSVG } from "../../components/SVGs/CustomSVGs";
-import "../../components/Table/Table.css"
 import CampaignsTable from "./CampaignsTable";
 import CampaignCreation from "./CampaignCreation";
 
@@ -66,13 +65,25 @@ const AntTab = styled((props: { label:string }) => <Tab disableRipple {...props}
   },
 }));
 
+export type Target = "All customers" | "Some customers" | "Owners"
+export type CampaignData = {
+  title: string,
+  description: string,
+  target: Target
+}
+
 const Customers = () => {
   const [value, setValue] = useState(0);
   const [open, setOpen] = useState(false)
+  const [campaigns, setCampaigns] = useState<CampaignData[]>([])
 
   const handleChange = (event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+
+  const createCampaign = (data: CampaignData) => {
+    setCampaigns(prev => [data, ...prev])
+  }
 
   return (
     <section className="h-[88vh] px-20 borderr border-red-400 overflow-y-scroll">
@@ -108,7 +119,7 @@ const Customers = () => {
         </div>
         <div className="relative h-[55vh] flex flex-col gap-4">
           <div className="h-[45vh] overflow-y-scroll">
-            <CampaignsTable />
+            <CampaignsTable data={campaigns}/>
           </div>
           <div className="h-[10vh]">
             <Pagination 
@@ -126,9 +137,10 @@ const Customers = () => {
           </div>
         </div>
       </section>
-      <CampaignCreation 
+      <CampaignCreation
         open={open}
         setOpen={setOpen}
+        createCampaign={createCampaign}
       />
     </section>
   );

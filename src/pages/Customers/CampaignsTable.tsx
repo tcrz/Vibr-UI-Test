@@ -1,22 +1,36 @@
-const CampaignsTable = () => {
+import { FC } from "react"
+import { CampaignData } from "./Customers"
+  import "../../components/Table/Table.css"
+
+type CampaignsTableProps = {
+  data: CampaignData[]
+}
+
+const CampaignsTable:FC<CampaignsTableProps> = ({ data }) => {
   return (
     <table>
+        {/* <colgroup>
+          <col style={{ width: "20%" }} />
+          <col style={{ width: "40%" }} />
+          <col style={{ width: "20%" }} />
+          <col style={{ width: "20%" }} />
+        </colgroup> */}
       <thead>
         <tr>
           <th style={{ textAlign: "left" }}>Campaign Title</th>
           <th className="text-left">Description</th>
-          <th style={{ textAlign: "left" }}>Target Group</th>
+          <th>Target Group</th>
           <th>Campaign Status</th>
         </tr>
       </thead>
       <tbody>
         {
-          [...Array(6).keys()].map(i => {
+          data.map((item, i) => {
             return (
-              <tr>
-                <td style={{ textAlign: "left" }}><p>Mobile App updates coming soon</p></td>
-                <td className="text-left"><p>Voice Campaign</p></td>
-                <td style={{ textAlign: "left" }}><p>All Customers</p></td>
+              <tr key={i}>
+                <td style={{ textAlign: "left" }}><p>{item.title}</p></td>
+                <td className="text-left"><p>{item.description}</p></td>
+                <td><p>{item.target}</p></td>
                 <td><p>Active</p></td>
               </tr>
             )
