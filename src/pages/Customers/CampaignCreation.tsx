@@ -1,6 +1,6 @@
 import { Button, OutlinedInput } from "@mui/material";
 import { Option, Select, Textarea } from "@mui/joy";
-import { ChangeEvent, FC, KeyboardEventHandler, SyntheticEvent, useState } from "react";
+import { ChangeEvent, FC, SyntheticEvent, useState } from "react";
 import Modal from "../../components/Modal/Modal";
 import { ArrowDown, DocumentBlackSVG } from "../../components/SVGs/CustomSVGs";
 import { CampaignData, Target } from "./Customers";
@@ -26,13 +26,15 @@ const CampaignCreation: FC<CampaignCreationProps> = ({
   const handleDescriptionOnChange = (event: ChangeEvent<HTMLTextAreaElement>) =>
     setDescription(event.target.value);
 
-  const handleTargetOnChange = (
-    event: SyntheticEvent | null,
-    option: string | null
-  ) => {
-    if (typeof option === "string") setTarget(option as Target);
+  // @ts-ignore
+  const handleTargetOnChange = (event: SyntheticEvent | null, option: string | null) => {
+    if (typeof option === "string") {
+       setTarget(option as Target);
+    }
+   
   };
 
+  // Closes modal and resets all inputs
   const handleModalClose = () => {
     setOpen(false);
     setTitle("");
@@ -42,6 +44,7 @@ const CampaignCreation: FC<CampaignCreationProps> = ({
 
   const handleCampaignCreation = () => {
     createCampaign({ title, description, target, status: "Active" });
+    // Close modal after creation
     handleModalClose();
   };
 

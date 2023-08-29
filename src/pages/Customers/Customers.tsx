@@ -1,4 +1,4 @@
-import { SyntheticEvent, useEffect, useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import Heading from "../../components/Heading";
 import { PaginationItem } from '@mui/material';
 import { Button, InputAdornment, OutlinedInput, Pagination } from '@mui/material';
@@ -6,7 +6,6 @@ import { ArrowLeft, ArrowRight, DocumentSVG, SearchSVG } from "../../components/
 import CampaignsTable from "./CampaignsTable";
 import CampaignCreation from "./CampaignCreation";
 import { AntTab, AntTabs, paginationStyles } from "./Styles";
-import { data } from "./data";
 
 
 export type Target = "All customers" | "Some customers" | "Owners"
@@ -25,14 +24,18 @@ const Customers = () => {
   const [paginatedCampaignsData, setPaginatedCampaignsData] = useState<CampaignData[]>(campaigns.slice(0, pageSize))
   const [page, setPage] = useState(1)
 
+  // @ts-ignore
   const handleChange = (event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
+  // For handling possible pagination
+  // @ts-ignore
   const handlePageOnChange = (event: React.ChangeEvent<unknown>, page: number) => {
     setPage(page)
     const start = (page - 1) * pageSize
     const end = start + pageSize
+    // Set slice based on start and end variables
     setPaginatedCampaignsData(campaigns.slice(start, end))
   }
 
