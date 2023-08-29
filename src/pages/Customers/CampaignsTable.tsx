@@ -9,12 +9,12 @@ type CampaignsTableProps = {
 const CampaignsTable:FC<CampaignsTableProps> = ({ data }) => {
   return (
     <table>
-        {/* <colgroup>
+        <colgroup>
           <col style={{ width: "20%" }} />
           <col style={{ width: "40%" }} />
           <col style={{ width: "20%" }} />
           <col style={{ width: "20%" }} />
-        </colgroup> */}
+        </colgroup>
       <thead>
         <tr>
           <th style={{ textAlign: "left" }}>Campaign Title</th>
@@ -31,7 +31,7 @@ const CampaignsTable:FC<CampaignsTableProps> = ({ data }) => {
                 <td style={{ textAlign: "left" }}><p>{item.title}</p></td>
                 <td className="text-left"><p>{item.description}</p></td>
                 <td><p>{item.target}</p></td>
-                <td><p>Active</p></td>
+                <td><p>{item.status}</p></td>
               </tr>
             )
           })
