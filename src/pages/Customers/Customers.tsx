@@ -6,6 +6,8 @@ import { PaginationItem, styled } from '@mui/material';
 import { Button, InputAdornment, OutlinedInput, Pagination } from '@mui/material';
 import { ArrowLeft, ArrowRight, DocumentSVG, SearchSVG } from "../../components/SVGs/CustomSVGs";
 import "../../components/Table/Table.css"
+import CampaignsTable from "./CampaignsTable";
+import CampaignCreation from "./CampaignCreation";
 
 const paginationStyles = {
   '& li button': {
@@ -19,18 +21,15 @@ const paginationStyles = {
       border: "1px solid",
       color: "white"
   },
-  '& .MuiPaginationItem-previousNext, & .MuiPaginationItem-previousNext:hover': {
+  '& .MuiPaginationItem-previousNext, & .MuiPaginationItem-firstLast, & .MuiPaginationItem-previousNext:hover': {
     background: "transparent",
     color: "#004741"
   },
   '& li button.Mui-selected, & li button.Mui-selected:hover': {
       backgroundColor: `#004741`,
       color:'white',
-  },
-
-    
+  },    
 }
-
 
 const AntTabs = styled(Tabs)({
   // borderBottom: '1px solid #e8e8e8',
@@ -69,6 +68,7 @@ const AntTab = styled((props: { label:string }) => <Tab disableRipple {...props}
 
 const Customers = () => {
   const [value, setValue] = useState(0);
+  const [open, setOpen] = useState(false)
 
   const handleChange = (event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -100,6 +100,7 @@ const Customers = () => {
           </div>
           <div className="h-[45px]">
             <Button variant="contained" startIcon={<DocumentSVG />}
+            onClick={() => setOpen(true)}
             className="!bg-[#004741] !text-white !rounded-[6px] text-[14px] !h-full">
               <p className="font-semibold">Create a campaign</p>
             </Button>
@@ -107,30 +108,7 @@ const Customers = () => {
         </div>
         <div className="relative h-[55vh] flex flex-col gap-4">
           <div className="h-[45vh] overflow-y-scroll">
-            <table>
-              <thead>
-                <tr>
-                  <th style={{ textAlign: "left" }}>Campaign Title</th>
-                  <th className="text-left">Description</th>
-                  <th style={{ textAlign: "left" }}>Target Group</th>
-                  <th>Campaign Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  [...Array(6).keys()].map(i => {
-                    return (
-                      <tr>
-                        <td style={{ textAlign: "left" }}><p>Mobile App updates coming soon</p></td>
-                        <td className="text-left"><p>Voice Campaign</p></td>
-                        <td style={{ textAlign: "left" }}><p>All Customers</p></td>
-                        <td><p>Active</p></td>
-                      </tr>
-                    )
-                  })
-                }
-              </tbody>
-            </table>
+            <CampaignsTable />
           </div>
           <div className="h-[10vh]">
             <Pagination 
@@ -148,6 +126,10 @@ const Customers = () => {
           </div>
         </div>
       </section>
+      <CampaignCreation 
+        open={open}
+        setOpen={setOpen}
+      />
     </section>
   );
 };
