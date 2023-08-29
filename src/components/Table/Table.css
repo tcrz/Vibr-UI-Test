@@ -21,13 +21,17 @@ table caption {
   width: 100%
 }
 
+/* table thead {
+  border-radius: 6px 6px 0 0;
+} */
+
 table thead th {
   position: sticky;
   top: 0;
   z-index: 2;
   height: 100%;
   /* @apply bg-blue-100; */
-  background-color: #F3F3F4;
+  background-color: #f3f3f3;
   color: #00100B
   /* @apply text-gray-500 */
   /* font-size: .6em */;
