@@ -41,7 +41,7 @@ const CampaignCreation: FC<CampaignCreationProps> = ({
   };
 
   const handleCampaignCreation = () => {
-    createCampaign({ title, description, target });
+    createCampaign({ title, description, target, status: "Active" });
     handleModalClose();
   };
 

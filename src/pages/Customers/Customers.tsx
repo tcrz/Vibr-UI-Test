@@ -14,7 +14,7 @@ export type CampaignData = {
   title: string,
   description: string,
   target: Target,
-  status: "Active"
+  status: string
 }
 
 const Customers = () => {
@@ -51,33 +51,35 @@ const Customers = () => {
   } 
 
   return (
-    <section className="h-[88vh] px-20 borderr border-red-400 overflow-y-scroll">
+    <section className="h-[88vh] px-4 borderr border-red-400 overflow-y-scroll sm:px-20">
       <Heading
         heading="Customers"
         subText="See all your customers in one place"
       />
-      <div className="mt-2 w-full border-b border-[#c2c3c3]">
+      <div className="mt-1 w-full border-b border-[#c2c3c3] sm:mt-2">
         <AntTabs
+          variant="scrollable"
+          centered
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <AntTab label="Customer Log" />
+          <AntTab label="Customer Log"/>
           <AntTab label="Campaigns" />
         </AntTabs>
       </div>
-      <section className="borderr border-red-500 h-[60vh]">
-        <div className="my-4 searchbar flex items-center justify-between flex-wrap borrder-2">
-          <div className="search flex basis-[50%] gap-2 borderr-2 border-red-700">
-            <OutlinedInput className="input-field !rounded-[6px] h-[45px] basis-[80%]" type="text" placeholder="Search customer log by customer name, email address & phone number"
+      <section className="borderr border-red-500 h-[61.5vh] sm:h-[60vh]">
+        <div className="borderr-2 my-1 searchbar flex flex-col-reverse items-center gap-2 justify-between flex-wrap borrder-2 sm:flex-row sm:my-4">
+          <div className="search flex gap-2 borderr-2 border-red-700 w-full sm:basis-[50%]">
+            <OutlinedInput className="input-field !rounded-[6px] h-[38px] w-full md:basis-[80%] sm:h-[45px]" type="text" placeholder="Search customer log by customer name, email address & phone number"
               startAdornment={<InputAdornment position="start"><SearchSVG /></InputAdornment>}              
             />
-            <Button variant="outlined" className="basis-[20%] !border-[.1em] !border-[#004741] !text-[#004741] !rounded-[6px] text-[14px]"><p className="font-semibold">Search</p></Button>
+            <Button variant="outlined" className="basis-[20%] !border-[.1em] !border-[#004741] !text-[#004741] !rounded-[6px] text-[14px] !hidden md:!flex"><p className="font-semibold">Search</p></Button>
           </div>
-          <div className="h-[45px]">
+          <div className="h-[38px] w-full sm:w-fit sm:h-[45px]">
             <Button variant="contained" startIcon={<DocumentSVG />}
             onClick={() => setOpen(true)}
-            className="!bg-[#004741] !text-white !rounded-[6px] text-[14px] !h-full">
+            className="!bg-[#004741] !text-white !rounded-[6px] text-[14px] !h-full !w-full">
               <p className="font-semibold">Create a campaign</p>
             </Button>
           </div>
@@ -86,7 +88,7 @@ const Customers = () => {
           <div className="h-[45vh] overflow-y-scroll">
             <CampaignsTable data={paginatedCampaignsData}/>
           </div>
-          <div className="h-[10vh]">
+          <div className="h-[8vh]">
             {
               campaigns.length > 0 && 
               <Pagination 

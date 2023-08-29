@@ -17,10 +17,10 @@ const CampaignsTable:FC<CampaignsTableProps> = ({ data }) => {
         </colgroup>
       <thead>
         <tr>
-          <th style={{ textAlign: "left" }}>Campaign Title</th>
+          <th style={{ textAlign: "left" }}>Title</th>
           <th className="text-left">Description</th>
           <th>Target Group</th>
-          <th>Campaign Status</th>
+          <th>Status</th>
         </tr>
       </thead>
       <tbody>
