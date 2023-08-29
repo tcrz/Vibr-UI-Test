@@ -75,7 +75,7 @@ const Customers = () => {
   };
 
   return (
-    <section className="h-[88vh] px-20 border border-red-400 overflow-y-scroll">
+    <section className="h-[88vh] px-20 borderr border-red-400 overflow-y-scroll">
       <Heading
         heading="Customers"
         subText="See all your customers in one place"
