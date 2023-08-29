@@ -56,14 +56,16 @@ const Navbar = () => {
   return (
     <>
     <nav className="navbar h-[11.5vh] bg-white flex items-center px-20 border-b border-[rgba(204, 207, 206, 0.24)]">
-      <div className="bgg-yellow-300 w-full h-full flex items-center justify-between">
+      <div className="bgg-yellow-300 w-full h-full flex items-center justify-around sm:justify-between">
         <img src={logo} width="150" height="150" alt="buuk-me-now logo" onClick={toggleDrawer("left", true)}/>
-        <div className="nav-menu borderr border-green-300 flex items-center gap-8 text-[#808885]">
+        <div className="nav-menu borderr border-green-300 hidden items-center gap-6 text-[#808885] lg:flex">
           {items.map((item) => (
             <MenuItem icon={item.icon} name={item.name} />
           ))}
         </div>
-        <UserMenu name="Buukmenow Demo" email="Buukmenow@gmail.com" />
+        <div className="hidden sm:block">
+          <UserMenu name="Buukmenow Demo" email="Buukmenow@gmail.com" />
+        </div>
       </div>
     </nav>
     <NavDrawer
