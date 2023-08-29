@@ -20,10 +20,10 @@ const NavDrawer:FC<NavDrawerProps> = ({anchor, toggleDrawer, open}) => {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <div className="w-full h-full flex flex-col gap-4 mt-8 p-2">
+      <div className="w-full h-full flex flex-col gap-2 mt-8 p-2">
         <div className="nav-menu p-6 borderr border-green-300 flex flex-col gap-8 text-[#808885]">
           {items.map((item) => (
-            <MenuItem icon={item.icon} name={item.name} />
+            <MenuItem icon={item.icon} name={item.name} isActive={item.name === 'Customers'} />
           ))}
         </div>
         <Divider/>
