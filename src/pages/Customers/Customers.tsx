@@ -21,7 +21,7 @@ const Customers = () => {
   const [value, setValue] = useState(0);
   const [open, setOpen] = useState(false)
   const pageSize = 5
-  const [campaigns, setCampaigns] = useState<CampaignData[]>(data)
+  const [campaigns, setCampaigns] = useState<CampaignData[]>([])
   const [paginatedCampaignsData, setPaginatedCampaignsData] = useState<CampaignData[]>(campaigns.slice(0, pageSize))
   const [page, setPage] = useState(1)
 
@@ -51,7 +51,7 @@ const Customers = () => {
   } 
 
   return (
-    <section className="h-[88vh] px-20 border border-red-400 overflow-y-scroll">
+    <section className="h-[88vh] px-20 borderr border-red-400 overflow-y-scroll">
       <Heading
         heading="Customers"
         subText="See all your customers in one place"
