@@ -32,7 +32,7 @@ export const AntTabs = styled(Tabs)({
   }
 });
 
-export const AntTab = styled((props: { label:string }) => <Tab disableRipple {...props} />)(({ theme }) => ({
+export const AntTab = styled((props: any) => <Tab disableRipple {...props} />)(({ theme }) => ({
   textTransform: 'none',
   minWidth: 0,
   [theme.breakpoints.up('sm')]: {
